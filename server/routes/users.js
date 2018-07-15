@@ -44,7 +44,8 @@ module.exports = (app) => {
   app.post(`${path}/auth/login`, (req, res) => {
     Users.loginUser(req.body).then(
       (user) => {
-        req.session.userId = user._id
+        console.log('HITTING req.session.userId')
+        //req.session.userId = user._id
         res.send(user)
       },
       (err) => {
@@ -54,10 +55,10 @@ module.exports = (app) => {
   })
 
   // test session
-  app.get(`${path}/auth/session`, (req, res) => {
-    let sessionUserId = req.session
-    res.send(`Print out session details: ${JSON.stringify(sessionUserId)} \n sessoin id = ${JSON.stringify(sessionUserId.id)}`);
-  })
+  // app.get(`${path}/auth/session`, (req, res) => {
+  //   let sessionUserId = req.session
+  //   res.send(`Print out session details: ${JSON.stringify(sessionUserId)} \n sessoin id = ${JSON.stringify(sessionUserId.id)}`);
+  // })
 
   // Update a user
   app.put(`${path}/users/:id`, (req, res) => {
